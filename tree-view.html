@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+<meta http-equiv="X-UA-Compatible" content="ie-edge" >
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<title></title>
+<style type="text/css">
+:root {
+      --folder-structure-item-height: 30px;
+      --folder-structure-item-margin-left: 2rem;
+      --folder-structure-item-padding-top: 1rem;
+      font-family:Ubuntu;
+     }
+
+     .folder-structure ul {
+      /* Reset */
+      list-style-type: none;
+      margin: 0;
+     }
+
+     .folder-structure li {
+      padding: var(--folder-structure-item-padding-top) 0rem 0rem 0rem;
+      position: relative;
+    
+     }
+
+     .folder-structure li span {
+     background:rgba(0, 0, 0, 0.3);
+display:inline-block;
+padding:8px;
+border-radius:4px;
+height:1rem;
+
+     }
+     .folder-structure li::before {
+      border-left: 1px solid rgba(0, 0, 0, 0.3);
+      content: '';
+
+      /* Position */
+      left: 0;
+      position: absolute;
+      top: 0;
+      transform: translate(calc(-1 * var(--folder-structure-item-margin-left)), 0);
+
+      /* Size */
+      height: 100%;
+     }
+
+     .folder-structure li::after {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+      content: '';
+
+      /* Position */
+      left: 0;
+      position: absolute;
+      top: calc(var(--folder-structure-item-padding-top) + var(--folder-structure-item-height) / 2);
+      transform: translate(-100%, 0);
+
+      /* Size */
+      width: var(--folder-structure-item-margin-left);
+     }
+
+     /* Remove the border from the last item */
+     .folder-structure li:last-child::before {
+      height: calc(
+       var(--folder-structure-item-padding-top) + var(--folder-structure-item-height) / 2
+      );
+     }
+</style>
+</head>
+<body>
+<div class="folder-structure">
+<ul>
+	<li>
+		<span>one</span>
+		<ul>
+			<li>
+			<span>one.one</span>
+			<ul>
+				<li><span>one.one.one</span></li>
+        		<li><span>one.one.two</span></li>
+			</ul>
+			</li>
+    		<li><span>one.two</span></li>
+		</ul>
+	</li>
+</ul>
+</div>
+
+<script type="text/javascript">
+ull = document.querySelectorAll(".folder-structure li span");
+ull.forEach((node)=>{
+node.nextElementSibling.style.display="block"
+	node.onclick = function(){
+		if(node.nextElementSibling.style.display == "block"){
+node.nextElementSibling.style.display = "none"
+		}else{
+node.nextElementSibling.style.display = "block"
+		}
+	}
+
+})
+</script>
+</body>
+</html>
