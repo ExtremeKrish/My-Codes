@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+
+
+
+body {
+
+background: #fff;
+  margin: 0;
+   overflow-x: hidden;
+
+font-family:Ubuntu;
+
+}
+body{
+margin:0;
+}
+p,label{
+padding:0;
+margin:0;
+
+}
+
+#toolbar {
+z-index:998;
+position:fixed;
+top:0;
+left:0;
+right:0;
+background:white;
+box-shadow:0 0 2px #999;
+padding:16px;
+font-size:18px;
+font-weight:500;
+color:#666666;
+display:flex;
+align-items:center;
+height:56px;
+}
+#toolbar2 {
+z-index:999;
+position:fixed;
+top:0;
+left:0;
+right:0;
+background:white;
+
+padding:16px;
+font-size:18px;
+font-weight:500;
+color:#666666;
+display:none;
+align-items:center;
+height:56px;
+}
+#toolbar2 input {
+border:none;
+outline:none;
+margin-left:16px;
+color:#666666;
+flex-grow:1;
+}
+#toolbar2 input::-webkit-search-cancel-button{
+-webkit-appearance: none;
+}
+
+#toolbar .menu {
+margin-right:16px;
+fill:#666666;
+}
+.menu2{
+fill:#666666;
+}
+#toolbar span {
+flex-grow:1;
+
+}
+#drawer {
+height:calc(100vh - 56px);
+overflow:hidden;
+background:#263238;
+position:fixed;
+z-index:998;
+width:240px;
+bottom:0;
+transition:500ms;
+color:white;
+padding-top:10px;
+left:-240px;
+overflow:hidden scroll;
+}
+
+#drawer a {
+padding:10px 20px;
+color:rgba(255,255,255,0.5);
+background:transparent;
+display:flex;
+font-size:16.8px;
+align-items:center;
+transition:200ms linear;
+padding-right:0;
+}
+#drawer a:hover{
+background:#222D32;
+}
+#drawer > a:first-child {
+color:rgba(255,255,255,0.8);
+}
+#drawer > a > span{
+margin:0 14px 0 4px;
+font-size:22px;
+}
+#drawer > a > i{
+margin:0 14px 0 4px;
+font-size:20px;
+}
+#drawer > .exp > a > span{
+margin:0 14px 0 4px;
+font-size:22px;
+color:transparent;
+}
+.exp {
+transition:200ms linear;
+}
+#drawer > .exp > a  > i{
+margin:0 14px 0 4px;
+font-size:19px;
+color:transparent;
+}
+#drawer label{
+font-size:13px;
+margin:0 14px 0 4px;
+padding:12px 20px;
+color:rgba(255,255,255,0.5);
+}
+
+</style>
+</head>
+<body>
+<!-------NavBar-Start------->
+	<nav id="toolbar" >
+		<svg class="menu"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-menu" width="24" height="24" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+		<span>Dashboard</span>
+		<p class="material-icons" style="font-size:28px;margin-right:16px;" onclick="searchToggle()">search</p>
+		<svg class="menu2"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-dots-vertical" width="24" height="24" viewBox="0 0 24 24"   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" /></svg>
+		<div class="dropdown-menu dropdown-menu-right">
+    		<button class="dropdown-item" type="button">Action</button>
+			<div class="dropdown-divider"></div>
+    		<button class="dropdown-item" type="button">Another action</button>
+    		<button class="dropdown-item" type="button">Something else here</button>
+		</div>
+	</nav>
+	<nav id="toolbar2" >
+<span class="material-icons" style="font-size:28px" onclick="searchToggle()">
+arrow_back
+</span><input type="search" placeholder="Search" id="search" >
+	</nav>
+<!-------NavBar-End------->
+
+<section id="drawer" >
+<a><span class="material-icons">
+dashboard</span>Dashboard
+</a>
+<label>Main</label>
+<a><i class="fa fa-id-card-o" aria-hidden="true"></i>Dashboard
+</a>
+<a><span class="material-icons">
+dashboard</span>Audit Log
+</a>
+<a><i class="fa fa-key" aria-hidden="true"></i>API Keys
+</a>
+<a><i class="fa fa-flag" aria-hidden="true"></i>Report
+</a>
+<a><i class="fa fa-code" aria-hidden="true"></i>Projects
+</a>
+<a><i class="fa fa-area-chart" aria-hidden="true"></i>Team Stats
+</a>
+<a onclick="expand('.exp')"><i class="fa fa-users" aria-hidden="true"></i><p style="padding:0;margin:0;flex-grow:1;" >Users</p>
+<span class="material-icons" id="expind" style="transition:200ms linear" >
+chevron_right
+</span>
+</a>
+<div class="exp" style="display:none" >
+<a><i class="fa fa-key" aria-hidden="true"></i>API Keys
+</a>
+<a><i class="fa fa-flag" aria-hidden="true"></i>Report
+</a>
+</div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+var drawer_open = false;
+$(".menu").click(function(){
+
+if(drawer_open == false){
+document.getElementById("drawer").style.left = "0";
+drawer_open = true;
+}else{
+document.getElementById("drawer").style.left = "-240px";
+drawer_open = false;
+}
+
+});
+
+function expand(obj){
+if(document.querySelector(obj).style.display == "none"){
+document.querySelector(obj).style.display = "block";
+document.querySelector("#expind").style.transform = 'rotate(90deg)';
+}else{
+document.querySelector(obj).style.display = "none";
+document.querySelector("#expind").style.transform = 'rotate(0deg)';
+}
+
+}
+
+var search_open = false;
+function searchToggle(){
+
+if(drawer_open == false){
+document.getElementById("toolbar2").style.display = "flex";
+drawer_open = true;
+}else{
+document.getElementById("toolbar2").style.display = "none";
+document.getElementById("search").value = "";
+drawer_open = false;
+}
+
+}
+</script>
+
+</body>
+</html>
