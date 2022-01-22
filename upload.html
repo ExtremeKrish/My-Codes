@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Telegraph Upload Media</title>
+<style type="text/css">
+@font-face {
+
+  font-family: 'Product';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(file:///storage/emulated/0/play%20store/opensans_semibold.ttf);
+}
+@font-face {
+
+  font-family: 'OS Bold';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(file:///storage/emulated/0/play%20store/opensans_bold.ttf);
+}
+@font-face {
+
+  font-family: 'OS Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(file:///storage/emulated/0/play%20store/opensans_regular.ttf);
+}
+body{
+background:#202125;
+color:white;
+font-family:Product;
+margin:0;
+}
+form{
+width:100%;
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+}
+input {
+display:none;
+}
+#box{
+font-family:OS Regular;
+margin:10px 12px 0px 12px;
+border-radius:8px;
+border:1.5px solid #707072;
+background:#2C2D31;
+font-size:14px;
+color:#DEDEE0;
+padding:10px;
+display:flex;
+height:200px;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+}
+button {
+margin:24px 12px 6px 12px;
+width:calc(100% - 24px);
+background:#1976D3;
+border:none;
+padding:12px 0;
+font-size:13px;
+color:white;
+font-family:OS Regular;
+border-radius:4px;
+display:none;
+outline:none;
+}
+h2{
+margin:24px 12px 24px 12px;
+font-size:20px;
+}
+#box span{
+margin-top:12px;
+
+}
+#box button{
+width:auto;
+padding:12px 24px;
+display:block;
+}
+</style>
+</head>
+<body>
+<form action="http://r96e.c1.biz/upload.php" method="post" enctype="multipart/form-data" target="_blank" >
+<input type="file" name="file" id="file" >
+<div id="box" >Drag and Drop to Upload File
+<span>OR</span>
+<label for="file"><button type="button" onclick="document.querySelector('#file').click()">Browse File</button></label>
+</div>
+<button>Upload</button>
+<button type="button" id="upload_btn" >Click To Upload</button>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+$('input[name=file]').change(function(ev) {
+if(this.value!==""){
+document.querySelector("#upload_btn").style.display = "block"
+}else{
+document.querySelector("#upload_btn").style.display = "none"
+}
+});
+/*$.ajax({
+xhr: function() {
+    var xhr = new window.XMLHttpRequest();
+
+    xhr.upload.addEventListener("progress", function(evt) {
+      if (evt.lengthComputable) {
+        var percentComplete = evt.loaded / evt.total;
+        percentComplete = parseInt(percentComplete * 100);
+   $("#upload_btn").html(percentComplete+"%");
+
+        if (percentComplete === 100) {
+
+        }
+
+      }
+    }, false);
+
+    return xhr;
+  },
+  url: 'http://r96e.c1.biz/upload.php', 
+  type: 'POST',
+  data: new FormData($('form')[0]), // The form with the file inputs.
+  processData: false,
+  contentType: false,
+  success : function(text){
+     alert(JSON.stringify(text));
+   },
+   uploadProgress: function(event, position, total, percentComplete) {
+   var percentVal = percentComplete + '%';
+   $("#upload_btn").html(percentVal);
+   }
+         // Using FormData, no need to process data.
+}).fail(function(){
+  alert("An error occurred, the files couldn't be sent!");
+});*/
+var percent = $('section');
+
+$('form').ajaxForm({
+    beforeSend: function() {
+        var percentVal = '0%';
+        percent.html(percentVal);
+    },
+    uploadProgress: function(event, position, total, percentComplete) {
+        var percentVal = percentComplete + '%';
+        percent.html(percentVal);
+    },
+    complete: function(xhr) {
+        alert(xhr.responseText);
+    }
+});
+
+</script>
+<script>
+
+</script>
+</body>
+</html>
