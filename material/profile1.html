@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style type="text/css">
+body{
+margin:0;
+height:calc(100vh + 180px - 56px);
+}
+#toolbar {
+z-index:999;
+position:fixed;
+top:0;
+left:0;
+right:0;
+background:transparent;
+padding:0 16px;
+font-size:18px;
+font-weight:500;
+color:#fff;
+display:flex;
+align-items:center;
+height:56px;
+}
+#toolbar .menu {
+margin-right:16px;
+fill:#fff;
+}
+.menu2{
+fill:#fff;
+}
+#toolbar > span {
+flex-grow:1;
+
+}
+section {
+background:#1976D2;
+position:absolute;
+width:100%;
+height:180px;
+box-shadow:0 0 5px #999;
+}
+section img{
+height:100px;
+width:100px;
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+bottom:-50px;
+border-radius:100px;
+background:white;
+border:2px solid white;
+}
+
+#demo{
+position:absolute;
+top:50%;
+}
+.detail {
+position:absolute;
+top:calc(180px + 56px);
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+.detail h2{
+margin:0;
+margin-top:10px;
+font-size:20px;
+font-weight:500;
+color:#263238;
+}
+.detail > span{
+padding:0 17px;
+text-align:center;
+margin-top:20px;
+color:#263238;
+}
+.detail button {
+background:#FF4081;
+border:0;
+outline:0;
+padding:10px 16px;
+color:white;
+font-weight:401;
+font-size:14px;
+border-radius:2px;
+box-shadow:0 1px 2px rgba(0,0,0,.3);
+margin-top:22px;
+}
+#gridview{
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-row-gap: 0px;
+grid-column-gap:0px;
+width:100%;
+margin-top:26px;
+}
+#gridview div{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+margin-bottom:40px;
+}
+#gridview div label{
+padding:0;
+margin:0;
+font-size:17px;
+font-weight:600;
+color:#263238;
+}
+#gridview div span{
+font-size:14px;
+margin-top:6px;
+color:#666666;
+}
+</style>
+</head>
+<body>
+<section>
+<!-------NavBar-Start------->
+	<nav id="toolbar" >
+		<svg class="menu"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-menu" width="24" height="24" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+		<span>Dashboard</span>
+		<svg class="menu2"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-dots-vertical" width="24" height="24" viewBox="0 0 24 24"   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" /></svg>
+
+	</nav>
+	<img id="img" src="photo_female_6.jpg" >
+<!-------NavBar-End------->
+</section>
+<div class="detail" >
+<h2>Martha Harris</h2>
+<span>Quisque imperdiet nunc at massa dictum volutpat. Etiam id<br> orci ipsum. Integer id ex dignissim</span>
+<button>FOLLOW</button>
+<div id="gridview" >
+		<div><label>8825</label><span>Followers</span></div>
+		<div><label>1766</label><span>Following</span></div>
+		<div><label>8.5</label><span>Social score</span></div>
+
+		<div><label>8825</label><span>Followers</span></div>
+		<div><label>1766</label><span>Following</span></div>
+		<div><label>8.5</label><span>Social score</span></div>
+
+</div>
+</div>
+<p id="demo" ></p>
+<script type="text/javascript">
+window.addEventListener("scroll", bringmenu);
+
+function bringmenu() {
+if((100 - window.pageYOffset) > 0){
+       document.getElementById("img").style.display = "block";
+    document.getElementById("img").style.height = (100 - window.pageYOffset)+"px";
+       document.getElementById("img").style.width = (100 - window.pageYOffset)+"px";
+       document.getElementById("img").style.bottom = 0-(100 - window.pageYOffset)/2+"px";
+       document.getElementById("img").style.borderWidth = (100 - window.pageYOffset)/50+"px";
+
+}else{
+       document.getElementById("img").style.display = "none";
+
+}
+    }
+
+</script>
+</body>
+</html>
