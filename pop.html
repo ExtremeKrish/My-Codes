@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Page Title</title>
+<link rel="stylesheet" href="https://material.io/resources/icons/?search=heart&icon=favorite_border&style=baseline">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
+>        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        
+        <script src="https://raw.githack.com/BartikaKumar/Popify/main/script.js"></script>
+        <script src="https://use.fontawesome.com/bae75bb48f.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/atoms19/dominity.js/dominityV2.min.js"></script> 
+        <style>
+            /* Created by Bartika🎶 */
+
+/* Created by Major */
+
+/* Created by Bartika🎶 */
+*{
+    scroll-behavior:smooth;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+body {
+    margin:0;
+    user-select:none;
+    color:#333;
+}
+@keyframes heart{
+    0%{
+        
+    }
+    50%{
+        transform:scale(1.1);
+    }
+    100%{}
+}
+#header{
+    height:50px;
+    font-size:15px;
+    color:white;
+    font-weight:bold;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);
+    position:fixed;
+    width:100vw;
+    top:0;
+    left:0;
+    z-index:9;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-left:10px;
+    padding-right:15px;
+    box-sizing:border-box ;
+}
+#head{
+    width:100vw;
+    height:150px;
+    background:#2b3a63;
+    display:flex;
+    align-items:center;
+    padding-top:100px;
+    flex-flow:column;
+    font-size:50px;
+    color:white;
+    font-weight:bold;
+}
+#menu{
+    position:fixed;
+    width:100vw;
+    position:fixed;
+    top:-300px;
+    left:0;
+    background:rgba(0,0,0,0.5);
+    transition:0.5s;
+    z-index:10;
+    backdrop-filter:blur(10px);
+    color:white;
+}
+#upper{
+    height:50px;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    box-sizing:border-box ;
+    padding-right:15px;
+    border-bottom:1px solid rgba(255,255,255,0.5);
+}
+#items>a{
+    text-decoration:none;
+    color:white;
+    -webkit-tap-highlight-color:rgba(255,255,255,0.2);
+}
+#items>a>div{
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    box-sizing:border-box ;
+    padding-left:10px;
+}
+.title{
+    padding-left:15px;
+    font-size:25px;
+    margin-top:20px;
+    font-weight:bold;
+    padding-right:5px;
+}
+.words{
+    padding-left:15px;
+    padding-right:5px;
+    margin-top:20px;
+    font-size:17px;
+    line-height:25px;
+}
+.pcode{
+    display:flex;
+    justify-content:center;
+}
+.code{
+    max-width:80vw;
+    background:#222;
+    overflow:scroll;
+    color:white;
+    font-size:15px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+    box-sizing:border-box ;
+    margin-top:20px;
+    border-left:5px solid #2b5a93;
+    border-right:5px solid #2b5a93;
+    max-height:80vw;
+}
+.code-w{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+    font-size:15px;
+}
+.code-w>div{
+    color:white;
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:2.5px;
+    padding-bottom:2.5px;
+    border-radius:10px;
+    margin-left:25px;
+    margin-right:25px;
+    min-width:100px;
+    text-align:center;
+}
+.code-w>div:active{
+    transform:scale(0.9);
+}
+.copy{
+    background:slateblue;
+}
+.run{
+    background:mediumseagreen;
+}
+.space{
+    height:30px;
+}
+
+button {
+    padding:10px;
+    background:transparent;
+    color:white;
+    border:none;
+}
+
+button:focus{
+    Outline:none;
+}
+
+tr {
+    background-color:#f3f3f3;
+    border-left-radius:5px;
+    margin-left:0px;
+}
+
+td {
+    border-bottom: 1px solid #cccccc;
+    border-radius:2px;
+    padding-left:10px;
+    
+}
+
+th{
+    background:#cccccc;
+    opacity:0.99;
+
+    
+}
+
+table {
+    margin-left:-10px;
+    margin-top:20px;
+    margin-bottom:20px;
+    z-index:8;
+}
+
+#bottom {
+    background:#2b3a63;
+    color:white;
+    text-align:center;
+    align-items:center;
+    justify-content:center;
+    display:flex;
+    height:50px;
+    padding:10px;
+}
+
+.svg{
+    transform:rotate(180deg);
+    bottom:0;
+    margin:0;
+    margin-bottom:-5px;
+    
+}
+.note{
+    width:100vw;
+    background:#ffcccb;
+    color:#8b0000;
+    margin-left:-15px;
+    padding:5px;
+    text-align:justify;
+    box-sizing:border-box ;
+    text-align-last:center;
+}
+.open{
+    top:0 !important;
+}
+        </style>
+        <script>
+            // Created by Bartika🎶
+
+// Created by Major
+
+// Created by Bartika🎶
+
+window.onload=function(){
+    alertify({
+        title:"I hope you like it! 😇",
+        confirmButtonText:"Proceed",
+        animationIn:"scale-up",
+        animationOut:"scale-down",
+    })
+}
+function copyr(self){
+    let original= self.innerHTML
+    self.innerHTML =`<button>Copied!</button>`
+    setTimeout(function(){
+        self.innerHTML=original
+    },2000)
+}
+function open_menu(){
+    document.getElementById("menu").classList.add("open")
+}
+function close_menu(){
+    document.getElementById("menu").classList.remove("open")
+}
+        </script>
+    </head>
+    <body>
+       <div id="header">
+           <div>POPIFY.js</div>
+           <div><i class="fa fa-bars" onclick="open_menu()"></i></div>
+       </div>
+       <div id="menu">
+           <div id="upper"><i class="fa fa-times" onclick="close_menu()"></i></div>
+           <div id="items">
+               <a href="#installation"><div>Installation</div></a>
+               <a href="#usage"><div>Usage</div></a>
+               <a href="#alertify"><div>Alertify</div></a>
+               <a href="#toastify"><div style="border-bottom:none">Toastify</div></a>
+           </div>
+       </div>
+       <div id="head">Popify.js<div style="height:20px"></div><span style="font-size:20px;font-weight:normal">A simple JS Library</span></div>
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#2b3a63" fill-opacity="1" d="M0,96L60,117.3C120,139,240,181,360,218.7C480,256,600,288,720,272C840,256,960,192,1080,176C1200,160,1320,192,1380,208L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+       <div class="space" id="installation"></div>
+      <div class="title">INSTALLATION</div>
+      <div class="words">Copy and paste the following in the head tag of your web code:</div>
+      <div class="pcode">
+      <div class="code" style="white-space:nowrap" id="code1">&lt;script src="https://raw.githack.com/BartikaKumar/Popify/main/script.js"&gt;&lt;/script&gt;</div>
+      </div>
+      <div class="code-w">
+          <div class="copy" onclick="copy('#code1');copyr(this)" data-clipboard-text="abc"><button>Copy Code <i class="fa fa-copy"></i></button></div>
+      </div>
+      <div class="space" id="usage"></div>
+      <div class="title">USAGE</div>
+      <div class="words">Use the alertify() function to pop-up an alert and the toastify() function to use a toast.</div>
+      <div class="pcode">
+      <div class="code">
+<pre id="code2">
+alertify({
+    title:'Simple Alert',
+    text:'This is a simple alert.',
+})
+</pre>
+      </div>
+      </div>
+      <div class="code-w">
+      <div class="copy" onclick="copy('#code2');copyr(this)" ><button>Copy Code <i class="fa fa-copy"></i></button></div>
+      <div class="run" onclick="alertify({title:'Simple Alert',text:'This is a simple alert.'})"><button>Run <i class="fa fa-play"></i></button></div>
+      </div>
+      <div class="space" id="alertify"></div>
+      <div class="title">ALERTIFY</div>
+      <div class="words">
+      The alertify() function accepts an object as the argument. You can use the following keys in the object to set-up the custom alert box:
+      <table>
+      <tr>
+      <th>Name</th>
+      <th>Type</th>
+      </tr>
+          <tr><td>title</td><td>string</td></tr>
+          <tr><td>text</td><td>string</td></tr>
+          <tr><td>html</td><td>html markup code</td></tr>
+          <tr><td>confirmButtonText</td><td>string</td></tr>
+          <tr><td>cancelButton</td><td>boolean</td></tr>
+          <tr><td>denyButton</td><td>boolean</td></tr>
+          <tr><td>cancelButtonText</td><td>string</td></tr>
+          <tr><td>denyButtonText</td><td>string</td></tr>
+          <tr><td>confirmButtonColor</td><td>a color</td></tr>
+          <tr><td>cancelButtonColor</td><td>a color</td></tr>
+          <tr><td>denyButtonColor</td><td>a color</td></tr>
+          <tr><td>onConfirmed</td><td>function</td></tr>
+          <tr><td>onCanceled</td><td>function</td></tr>
+          <tr><td>onDenied</td><td>function</td></tr>
+          <tr><td>footer</td><td>string</td></tr>
+          <tr><td>input</td><td>boolean</td></tr>
+          <tr><td>inputSetAttributes</td><td>Object (keys= attributes, values= values)</td></tr>
+          <tr><td>removeBackdropBlur</td><td>boolean</td></tr>
+          <tr><td>alertWidth</td><td>css width value</td></tr>
+          <tr><td>animationIn</td><td>string ("scale-up" / "scale-down" / "fade-up" / "fade-down" / "fade-left" / "fade-right")</td></tr>
+          <tr><td>animationOut</td><td>string ("scale-up" / "scale-down" / "fade-up" / "fade-down" / "fade-left" / "fade-right")</td></tr>
+          <tr><td>darkMode</td><td>boolean</td></tr>
+          <tr><td>alertBoxColor</td><td>a color</td></tr>
+          <tr><td>alertBoxTextColor</td><td>a color</td></tr>
+          <tr><td>alertPersistOnConfirmed</td><td>boolean</td></tr>
+          <tr><td>alertPersistOnCanceled</td><td>boolean</td></tr>
+          <tr><td>alertPersistOnDenied</td><td>boolean</td></tr>
+          <tr><td>autoTimerClose</td><td>int (milliseconds)</td></tr>
+          <tr><td>onAutoTimerClose</td><td>function</td></tr>
+      </table>
+      <div class="note"><i class="fa fa-exclamation-triangle"></i> The onConfirmed, onCanceled, onDenied, and onAutoTimerClose functions accept an argument which contain the value of the input (if it is there).</div>
+      </div>
+      <div class="pcode">
+      <div class="code">
+<pre id="code3">
+alertify({
+    title:'Sample Alert',
+    html:'&lt;b&gt;Lorem ipsum dolor sit amet&lt;/b&gt;, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    cancelButton:true,
+    denyButton:true,
+    confirmButtonText:'Yes',
+    denyButtonColor:'#bb86fc',
+    onConfirmed:function(a){
+        console.log(a)
+    },
+    footer:'This is so simple',
+    input:true,
+    inputSetAttributes:{
+        type:'number',
+    },
+    animationIn:'fade-left',
+    animationOut:'fade-left',
+    darkMode:true,
+    alertPersistOnCanceled:true,
+})
+</pre>
+      </div>
+      </div>
+      <div class="code-w">
+      <div class="copy" onclick="copy('#code3');copyr(this)" ><button>Copy Code <i class="fa fa-copy"></i></button></div>
+      <div class="run" onclick="alertify({
+    title:'Sample Alert',
+    html:'&lt;b&gt;Lorem ipsum dolor sit amet&lt;/b&gt;, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    cancelButton:true,
+    denyButton:true,
+    confirmButtonText:'Yes',
+    denyButtonColor:'#bb86fc',
+    onConfirmed:function(a){
+        console.log(a)
+    },
+    footer:'This is so simple',
+    input:true,
+    inputSetAttributes:{
+        type:'number',
+    },
+    animationIn:'fade-left',
+    animationOut:'fade-left',
+    darkMode:true,
+    alertPersistOnCanceled:true,
+})"><button>Run <i class="fa fa-play"></i></button></div>
+      </div>
+      <div class="space" id="toastify"></div>
+      <div class="title">TOASTIFY</div>
+      <div class="words">Use the alertify() function to pop-up an alert and the toastify() function to use a toast.
+      <table>
+          <tr><th>Name</th><th>Type</th></tr>
+          <tr><td>toastBoxColor</td><td>a color</td></tr>
+          <tr><td>toastBoxTextColor</td><td>a color</td></tr>
+          <tr><td>toastBoxShadow</td><td>css shadow syntax</td></tr>
+          <tr><td>toastBoxTextAlign</td><td>string</td></tr>
+          <tr><td>toastWidth</td><td>css width</td></tr>
+          <tr><td>animationIn</td><td>string ("scale-up" / "scale-down" / "fade-up" / "fade-down" / "fade-left" / "fade-right")</td></tr>
+          <tr><td>animationOut</td><td>string ("scale-up" / "scale-down" / "fade-up" / "fade-down" / "fade-left" / "fade-right")</td></tr>
+          <tr><td>text</td><td>string</td></tr>
+          <tr><td>html</td><td>html markup code</td></tr>
+          <tr><td>position</td><td>string ("top right" / "top left" / "bottom right" / "bottom left")</td></tr>
+          <tr><td>toastCloseTimer</td><td>int (milliseconds)</td></tr>
+      </table>
+      </div>
+      
+      <div class="pcode">
+      <div class="code">
+<pre id="code4">
+toastify({
+    text:'This is me!',
+    toastBoxColor:'tomato',
+    toastBoxTextColor:'white',
+    toastBoxShadow:'none',
+    toastBoxTextAlign:'center',
+    toastWidth:'90vw',
+    animationOut:'scale-up',
+    position:'top left',
+    toastCloseTimer:'1000',
+})
+</pre>
+      </div>
+      </div>
+      <div class="code-w">
+      <div class="copy" onclick="copy('#code4');copyr(this)" ><button>Copy Code <i class="fa fa-copy"></i></button></div>
+      <div class="run" onclick="toastify({
+    text:'This is me!',
+    toastBoxColor:'tomato',
+    toastBoxTextColor:'white',
+    toastBoxShadow:'none',
+    toastBoxTextAlign:'center',
+    toastWidth:'90vw',
+    animationOut:'scale-up',
+    position:'bottom left',
+    toastCloseTimer:'1000',
+})"><button>Run <i class="fa fa-play"></i></button></div>
+      </div>
+      <div class="space"></div>
+      
+      <svg class="svg"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#2b3a63" fill-opacity="1" d="M0,96L60,117.3C120,139,240,181,360,218.7C480,256,600,288,720,272C840,256,960,192,1080,176C1200,160,1320,192,1380,208L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+<div id="bottom">Created with <span class="material-icons" style="margin:5px;animation:heart 2s ease infinite;">favorite</span> by Bartika</div>      
+    </body>
+</html>

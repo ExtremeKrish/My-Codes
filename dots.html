@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style type="text/css">
+.spinner {
+display:flex;
+  width: 200px;
+
+  text-align: center;
+  font-size: 10px;
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  align-items:center;
+
+  justify-content:center;
+}
+
+.spinner > div {
+  background-color: #046cff;
+  height: 8px;
+  width: 8px;
+  margin:2.5px;
+  display: inline-block;
+  border-radius:50px;
+
+  animation: sk-stretchdelay 1150ms infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1100ms;
+  animation-delay: -1100ms;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1050ms;
+  animation-delay: -1050ms;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -1000ms;
+  animation-delay: -1000ms;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -950ms;
+  animation-delay: -950ms;
+}
+.spinner .rect6 {
+  -webkit-animation-delay: -900ms;
+  animation-delay: -900ms;
+}
+
+.spinner .rect7 {
+  -webkit-animation-delay: -850ms;
+  animation-delay: -850ms;
+}
+
+.spinner .rect8 {
+  -webkit-animation-delay: -800ms;
+  animation-delay: -800ms;
+}
+
+@keyframes sk-stretchdelay {
+  0% { 
+transform:translateY(20px);
+
+  }  50% { 
+transform:translateY(-20px);
+
+  }
+  100% { 
+  transform:translateY(20px);
+  
+  } 
+}
+
+</style>
+</head>
+<body>
+<div class="spinner">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+  <div class="rect6"></div>
+  <div class="rect7"></div>
+  <div class="rect8"></div>
+</div>
+</body>
+</html>

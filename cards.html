@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Morph</title>
+    <style>
+        
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+
+* {
+    padding:0;
+    margin :0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+html {
+    font-family: "Nunito", sans-serif ;
+}
+
+body {
+   
+    background-color:#5677fc;
+}
+
+.wrapper {
+
+    width: 100% ;
+    --gap:1rem;
+    --card-size:calc(min(100vw,400px) / 2 - var(--gap) * 3 / 2);
+
+    max-width: 400px ;
+margin:0 auto;
+padding-top:51px;
+}
+
+.title {
+    text-align:center;
+    line-height:4;
+    color:#fff;
+}
+
+.grid-view {
+    --scale-x:0;
+    --scale-y:0;
+    --x:0;
+    --y:0;
+    padding: 1rem ;
+    width: 100% ;
+    height: 100% ;
+    display: grid ;
+    gap: 1rem ;
+    grid-template-columns: repeat(2,1fr) ;
+    grid-auto-rows   : var(--card-size) ;
+    overflow: hidden ;
+}
+
+.card {
+
+    width: var(--card-size)  ;
+    height: var(--card-size)  ;
+    border-radius: 10px ;
+ box-shadow: 0 2px 4px rgba(0,0,0,.24);
+    transition: opacity 300ms ease-out ;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.7rem;
+    background-color:#fff;
+}
+
+.card img {
+    width: 40% ;
+}
+
+.article-container {
+scroll-behavior:smooth;
+    position: fixed ;
+    top : 0 ;
+    left: 0 ;
+    width : 100vw ;
+    height: 100vh ;
+    background-color: #fff ;
+    opacity: 0 ;
+    pointer-events: none ;
+    overflow: auto ;
+    z-index: 60 ;
+}
+
+.article-container[data-visibility="show"] {
+
+    animation: fade-in 300ms 200ms forwards ease-out;
+    pointer-events: all ;
+}
+
+.article-container[data-visibility="hide"] {
+    animation: fade-out 300ms forwards ease-out;
+}
+
+.article-container .header {
+
+    height: 3rem ;
+ /*   border-bottom: 2px solid #5d5d5d ;*/
+ 	box-shadow:0 -5px 5px 5px rgba(0,0,0,.20);
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    background:white;
+}
+
+.article-container .header .name {
+    font-size: 1.2rem ;
+    font-weight: 600 ;
+    line-height: 3rem ;
+    margin-left: 1rem ;
+    color: #424242 ;
+}
+
+.article-container .header .close-btn {
+    position: absolute ;
+    right: 0 ;
+    top: 0 ;
+    width: 3rem ;
+    height: 3rem ;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.article-container .header .close-btn svg {
+    fill : #5d5d5d ;
+}
+
+.article-container .article {
+    padding: 1rem ;
+    display: none ;
+}
+
+.article-container .article h3 {
+    color: #454545 ;
+    margin-bottom: 1rem ;
+}
+
+.article-container .article p {
+    color: #545454 ;
+    text-align: justify ;
+    font-size: 1.15rem ;
+    line-height: 1.3 ;
+}
+
+.article-container .article img {
+    display: block ;
+    margin: 0 auto ;
+    width: 20vw ;
+    margin-bottom: 2rem ;
+}
+
+.article[data-visibility="show"] {
+    display: block ;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0 ;
+    }
+    to {
+        opacity: 1 ;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1 ;
+    }
+    to {
+        opacity: 0 ;
+    }
+}
+
+#ghost-card {
+
+    position: absolute ;
+    width: 100vw ;
+    height: 100vh ;
+    top : 0 ;
+    left: 0 ;
+    background-color: #fff ;
+    opacity: 0 ;
+    pointer-events: none ;
+    z-index: 50 ;
+}
+
+#ghost-card[data-visibility="show"] {
+
+    animation: fade-in 200ms ease-out forwards ;
+    transition: all 200ms ease-out ;
+}
+
+#ghost-card[data-state="collapsed"] {
+
+    clip-path: polygon(
+        var(--x) var(--y),
+        calc(var(--x) + var(--w)) var(--y), 
+        calc(var(--x) + var(--w)) calc(var(--y) + var(--h)) , 
+        var(--x) calc(var(--y) + var(--h))
+    );
+}
+
+#ghost-card[data-state="expanded"] {
+    clip-path: polygon(0% 0%,100% 0%,100% 100%,0% 100%);
+}
+
+#overlay {
+
+    position: fixed ;
+    top: 0 ;
+    left: 0 ;
+    width: 100vw ;
+    height: 100vh ;
+    background-color: rgba(0,0,0,.0);
+    z-index: 45 ;
+    opacity: 0 ;
+    pointer-events: none ;
+    transition: all 200ms ease-out ;
+}
+
+#ghost-card[data-visibility="show"] + #overlay {
+    opacity: 1 ;
+    pointer-events: all ;
+}
+.article {
+margin-top:3rem;
+}
+#item {
+background-color:transparent;
+color:black;
+margin-right:16px;
+font-size: 16px;
+border: none;
+cursor:none;
+
+}
+
+.menu {
+z-index:;
+position: absolute;
+display: inline-block;
+height:50px;
+right:0;
+}
+#submenu {
+right:10px;
+display: none;
+position: absolute;
+background-color: #ffffff;
+min-width: 150px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+cursor:none;
+}
+#submenu a {
+color:black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+#submenu a:hover {
+animation:hov 500ms;
+cursor:none;
+}
+
+@keyframes hov {
+0%{ background-color:white;   }
+100%{  background-color:#333;  }
+
+}
+
+/* Created by Scott Groves */
+
+
+.header_menu{
+font-size: 1.2rem ;
+font-weight: 600 ;
+line-height: 3rem ;
+
+color: #424242 ;
+ 	box-shadow:0 -5px 5px 5px rgba(0,0,0,.20);
+position:absolute;
+display:block;
+height: 3rem ;
+ /*   border-bottom: 2px solid #5d5d5d ;*/
+ 	box-shadow:0 -5px 5px 5px rgba(0,0,0,.20);
+position:fixed;
+top:0;
+left:0;
+right:0;
+background:white;
+}
+.fa-bars {
+p
+}
+
+.mfade {
+animation:fadein 500ms;
+
+}
+
+@keyframes fadein {
+
+0% { opacity:0;}
+100% {opacity:1;}
+}
+.h_logo{
+height:35px;
+margin-top:7px;
+margin-left:5px;
+}
+.w3-top{
+position: fixed;
+width: 100%;
+z-index: 1}
+    </style>
+    <script>
+        
+     
+
+let ghostCard ;
+let gridView ;
+let articleContainer ;
+let targetCard ;
+let targetArticle ;
+
+window.onload = () => {
+    ghostCard = document.querySelector("#ghost-card") ;
+    gridView = document.querySelector(".grid-view") ;
+    articleContainer = document.querySelector(".article-container");
+    let cardList = [...document.querySelectorAll(".card")] ;
+    cardList.forEach((card) => {
+        card.addEventListener("click",()=>{expandCard(card)});
+    })
+    document.querySelector(".close-btn").addEventListener("click",collapseCard);
+}
+
+function expandCard(card){
+    // set target card
+    targetCard = card ;
+
+    // re-append ghost card
+    ghostCard.setAttribute("style","");
+    ghostCard.parentElement.replaceChild(ghostCard,ghostCard);
+
+    // copy card size
+    let x = card.offsetLeft;
+    let y = card.offsetTop ;
+    let w = card.offsetWidth ;
+    let h = card.offsetHeight;
+    ghostCard.style.setProperty("--x",x + "px");
+    ghostCard.style.setProperty("--y",y + "px");
+    ghostCard.style.setProperty("--w",w + "px");
+    ghostCard.style.setProperty("--h",h + "px");
+
+    // hide card
+    card.setAttribute("data-visibility","hide");
+
+    // show ghost card
+    ghostCard.setAttribute("data-visibility","show");
+
+    // set ghost card to collapsed state
+    ghostCard.setAttribute("data-state","collapsed");
+
+    // set article
+    targetArticle = document.querySelector(card.getAttribute("data-article"));
+
+    // expand ghost card
+    setTimeout(()=>{
+        ghostCard.setAttribute("data-state","expanded");
+        // show article
+        targetArticle.setAttribute("data-visibility","show");
+        // show article container
+        articleContainer.setAttribute("data-visibility","show");
+    },200)
+}
+
+function collapseCard(){
+    // hide article
+    articleContainer.setAttribute("data-visibility","hide");
+    // collapse ghost card
+    setTimeout(()=>{
+        ghostCard.setAttribute("data-state","collapsed");
+        // hide article
+        targetArticle.setAttribute("data-visibility","hide");
+        setTimeout(()=>{
+            // hide ghost card
+            ghostCard.setAttribute("data-visibility","");
+            // show card
+            targetCard.setAttribute("data-visibility","show");
+        },200)
+    },200)
+}
+
+    </script>
+</head>
+<body>
+<div class="header_menu w3-top" id="myID">
+<span style="    margin-left: 1rem ;" >Home</span>
+<div class="menu">
+  <div id="item"><i class="fa fa-bars" area-hidden="true" style="font-size:16px;"></i></div>
+  <div id="submenu">
+    <a href="#" class="link" >Home</a>
+    <a href="#about" class="link">About</a>
+    <a href="#portfolio" class="link" >Portfolio</a>
+    <a href="#contact" class="link" >Contact</a>
+	
+  </div>
+</div>
+</div>
+<!--Parent-->
+    <div class="wrapper">
+    
+    
+    <!--Patent Top Title-->
+        <h3 class="title">Click on cards</h3>
+        
+        
+        
+        
+        <div class="grid-view">
+        
+        <!--HERE ALL CARDS-->
+        
+        <!--CARD 1-->
+        
+            <div data-article="#art1" class="card">
+                <img src="https://image.flaticon.com/icons/png/128/590/590685.png">
+           </div>
+           
+           
+           
+           
+           
+           
+           
+           
+                   <!--CARD 2-->
+            <div data-article="#art2" class="card">
+                <img src="https://image.flaticon.com/icons/png/128/590/590746.png">
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+                    <!--CARD 3-->
+            <div data-article="#art3" class="card">
+                <img src="https://image.flaticon.com/icons/png/128/590/590740.png">
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+                    <!--CARD 4-->
+            <div data-article="#art4" class="card">
+                <img src="https://image.flaticon.com/icons/png/128/590/590717.png">
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+                    <!--CARD 5-->
+            <div data-article="#art5" class="card">
+                <img src="https://image.flaticon.com/icons/png/128/590/590685.png">
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+                    <!--CARD 6-->
+            <div data-article="#art6" class="card">
+            <img src="https://image.flaticon.com/icons/png/128/590/590685.png">
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
+        
+        
+        
+        <div id="ghost-card"></div>
+        <div id="overlay"></div>
+        
+        
+        <div class="article-container" data-state="">
+        
+        
+        
+        
+                <!--TOOLBAR OF ARTICLE-->
+            <div class="header">
+                <div class="name">Article</div>
+                <div class="close-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>ic_close_24px</title>
+                        <g>
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            
+            
+            
+            
+            <div class="article" id="art1">
+                <h3 class="title">Strawberry</h3>
+                <img src="https://image.flaticon.com/icons/png/128/590/590685.png">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="article" id="art2">
+                <h3 class="title">Cookies</h3>
+                <img src="https://image.flaticon.com/icons/png/128/590/590746.png">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="article" id="art3">
+                <h3 class="title">Pudding</h3>
+                <img src="https://image.flaticon.com/icons/png/128/590/590740.png">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="article" id="art4">
+                <h3 class="title">French Fries</h3>
+                <img src="https://image.flaticon.com/icons/png/128/590/590717.png">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="article" id="art5">
+            <h3 class="title">French Fries</h3>
+            <img src="https://image.flaticon.com/icons/png/128/590/590717.png">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="article" id="art6">
+            <h3 class="title">French Fries</h3>
+            <img src="https://image.flaticon.com/icons/png/128/590/590717.png">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
+    </div>
+</body>
+</html>

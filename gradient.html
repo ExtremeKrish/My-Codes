@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.2.0/styles/stackoverflow-light.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.2.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/> <!-- 'classic' theme -->
+    
+    <title>Gradement</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/> <!-- 'classic' theme -->
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+    <style type="text/css">
+    
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+    
+    
+    * {
+    box-sizing: border-box ;
+    margin: 0 ;
+    padding: 0 ;
+    }
+    
+    html {
+    font-family: "Nunito", sans-serif ;
+    }
+    
+    body[data-theme="light"]{
+    --bg:#f7fbfc;
+    --surface:#d6e6f2;
+    --on-surface:#769fcd;
+    --border:#fff;
+    --border-h:#1089ff;
+    }
+    
+    body[data-theme="dark"]{
+    --bg:#252a34;
+    --surface:#d6e6f2;
+    --on-surface:#fff;
+    --border-h:#fff;
+    --border:#fff;
+    }
+    
+    .wrapper {
+    width : 100% ;
+    height: 100% ;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    background-color:var(--bg);
+    padding:2.5rem;
+    }
+    
+
+    .gradient-viewer {
+	height:200px;
+    width:100%;
+    margin-bottom:20%;
+	border-radius:4px;
+    }
+    .gradient-editor {
+    position:relative;
+    width :100%;
+    height:50px;
+    border-radius:4px;
+    }
+    
+    .gradient-editor .handle {
+    --value:1;
+    --color:red;
+    --size:1.8rem;
+    --border-color:var(--border);
+    position:absolute;
+    top :0;
+    left:calc(var(--value) * 100%);
+    width :var(--size);
+    height:calc(100% + var(--size));
+    transform:translateX(-50%);
+    filter:drop-shadow(0 0 2px rgba(0,0,0,.2));
+    }
+    
+    .gradient-editor .handle[data-state="selected"] ,
+    .gradient-editor .handle:focus {
+    --border-color: var(--border-h);
+    --size:2rem;
+    filter:drop-shadow(0 0 2px rgba(0,0,0,.5));
+
+    z-index:1;
+    outline:none;
+    }
+    
+    
+    .gradient-editor .handle::after{
+    position:absolute;
+    bottom:0%;
+    left:50%;
+    content:"";
+    --size2:calc(var(--size) - 4px);
+    width :var(--size2);
+    height:var(--size2);
+    border-radius:50%;
+    background-color:var(--color);
+    border:2px solid var(--border-color);
+    transform:translate(-50%,-0%);
+    }
+    
+    .gradient-editor .handle::before {
+    position:absolute;
+    content:"";
+    top :0%;
+    left:50%;
+    width :2px;
+    height:100%;
+    border-radius:500px;
+    background-color:var(--border-color);
+    transform:translateX(-50%);
+    }
+    .color-picker {
+
+    --color:#fff;
+    position:relative;
+    border-radius:50%;
+    width :5rem;
+    height:5rem;
+    flex:0 0 5rem;
+    border:6px solid #393e46;
+margin-top:20%;
+    background-color:var(--color);
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
+    }
+    .pcr-button::before {
+        border-radius:100px!important;
+    background-image:none!important;
+    
+    }
+    .pcr-button::after {
+        border-radius:100px!important;
+
+
+    }
+    .pcr-button {
+    
+    --color:#fff;
+    position:relative!important;
+    border-radius:100px!important;
+    width :5rem!important;
+    height:5rem!important;
+    flex:0 0 5rem;
+    border:6px solid #393e46;
+    margin-top:20%;
+    background-color:var(--color);
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
+    }
+    .color-picker::before {
+    position:absolute;
+    content:"Color Picker";
+    white-space:nowrap;
+    font-size:0.75rem;
+    left:50%;
+    bottom:-2.5rem;
+    color:var(--on-surface);
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase ;
+    opacity:0.8;
+    transform:translate(-50%,-50%);
+    }
+    
+    
+    .btn {
+    margin-top:1rem;
+    padding:0.7rem 1rem;
+    border-radius:4px;
+    font-size:0.75rem;
+    font-weight:700;
+    color:#fff;
+    background-color:var(--on-surface);
+    background: linear-gradient(-135deg, #6FB1FC, #4364F7, #0052D4);
+    box-shadow:0 3px 6px rgba(0,0,0,.3);
+    transition:all 300ms ;
+    background: #7eca9c;
+    }
+    
+    .btn:active {
+    box-shadow:0 2px 3px rgba(0,0,0,.2);
+    transform:scale(0.9);
+    background-color: #2ee888;
+    }
+    
+    textarea {
+    position:absolute;
+    top:-100%;
+    }
+    
+    .info {
+    margin-top:1rem;
+    color:var(--on-surface);
+    opacity:0.8;
+    font-size:0.9rem;
+    text-align:center;
+    line-height:1.5;
+    }
+    
+.slider-box{
+margin-top:20%;
+    position:relative;
+    height:10px;
+width:100%;
+}
+.slider{
+    position:relative;
+    width:100%;
+    -webkit-appearance:none;
+    height:10px;
+    border-radius:8px;
+    z-index:2;
+    background-color:transparent;
+}
+.bar{
+    position:absolute;
+    height:10px;
+    background-color: #162940;    
+    left:5px;
+    border-radius:8px;
+    right:5px;
+    top:7px;
+    z-index:1;
+    overflow:hidden;
+}
+.bar .filled{
+    display:block;
+    height:inherit;
+    background-color:#ed5565;
+}
+.slider::-webkit-slider-thumb{
+    width:20px;
+    height:20px;
+    background-color:tomato;
+    -webkit-appearance:none;
+    border-radius:50%;
+    z-index:3;
+    margin-top:2px;
+}
+.value{
+    margin-top:20px;
+    color:#fff;
+    font-weight:bold;
+    text-align:center;
+}
+#code{
+margin-top:4rem;
+padding:0.7rem 1rem;
+border-radius:4px;
+
+color:#fff;
+background-color:var(--on-surface);
+background: linear-gradient(-135deg, #6FB1FC, #4364F7, #0052D4);
+box-shadow:0 3px 6px rgba(0,0,0,.3);
+transition:all 300ms ;
+background: #7eca9c;
+
+}
+.fieldset {
+height:40px;
+border:2px solid #8E54E9;
+border-radius:4px;
+margin-bottom:20px;
+padding:0;
+display:flex;
+}
+.fieldset label li{
+margin:0;
+height:100%;
+list-style:none;
+height:36px;
+width:36px;
+font-size:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.fieldset label{
+margin:0;
+padding:0;
+
+height:100%;
+
+font-size:0;
+}
+.fieldset label input[type="radio"]{
+margin:0;
+display:none;
+}
+.fieldset label input:checked + li{
+background:#8e54e9;
+margin:0;
+}
+    </style>
+    <script type="text/javascript">
+    // Created by Virtual Pixel
+    
+    var type = 0;
+    
+    let gradientEditor ;
+    let handles = [];
+    let dragTarget = null ;
+    let currentColor ;
+    let cp;
+    let gv;
+    let selectedHandle;
+    let currentGradient ;
+    
+    window.onload = () => {
+    gradientEditor = document
+    .querySelector(".gradient-editor");
+    cp = document
+    .querySelector(".color-picker");
+    gv = document
+    .querySelector(".gradient-viewer");
+    //cp.onclick = colorPicker;
+    
+    addHandle(0, "#8E54E9" );
+    addHandle(1, "#4776E6" );
+    
+    setColorPicker( "#8E54E9" );
+    applyGradient(type);
+    
+    selectedHandle = document.querySelector(".handle");
+    
+    gradientEditor.addEventListener(
+    "dblclick",(e) => {
+    e.stopPropagation();
+    let v = e.offsetX / gradientEditor
+    .getBoundingClientRect().width ;
+    addHandle(
+    v,
+    currentColor
+    );
+    applyGradient(type);
+    }
+    );
+    
+
+    
+    
+    
+    
+
+    
+    var slider = document.querySelector(".slider");
+    var filled = document.querySelector(".filled");
+    var field = document.querySelector(".value");
+
+    field.innerText = slider.value +" Degree"
+    filled.style.width= (slider.value/3.6) +"%";
+
+    
+    slider.oninput = function(){
+    var value= slider.value;
+    field.innerText = value+" Degree"
+    filled.style.width=(slider.value/3.6) +"%";
+     applyGradient(type);
+    }
+    
+    
+    
+
+    
+    
+    }
+    
+    
+    
+    
+    function touchStartHandler(event){
+    if(dragTarget !== null) return ;
+    dragTarget = event.target ;
+    selectedHandle = dragTarget ;
+    
+    window.addEventListener(
+    "touchmove",
+    touchMoveHandler
+    );
+    window.addEventListener(
+    "touchend",
+    touchEndHandler
+    );
+    dragTarget.focus();
+    
+    setColorPicker(dragTarget.c)
+    cpp.setColor(dragTarget.c,false);
+
+    }
+    
+    
+    
+    
+    
+    
+    function touchMoveHandler(event){
+    let cBCR = gradientEditor
+    .getBoundingClientRect();
+    let x = event.touches[0].clientX - cBCR.x ;
+    let v = x / gradientEditor
+    .getBoundingClientRect().width ;
+    v = Math.max(0,v);
+    v = Math.min(1,v);
+    //if(!v) v = 0;
+    dragTarget.style.setProperty("--value",v);
+    dragTarget.v = v;
+    applyGradient(type);
+    }
+    
+    
+    
+    
+    
+    
+    function touchEndHandler(){
+    window.removeEventListener(
+    "touchmove",
+    touchMoveHandler
+    );
+    window.removeEventListener(
+    "touchend",
+    touchEndHandler
+    );
+    dragTarget = null ;
+    }
+    
+    
+    
+    
+    
+    
+    function addHandle(v,c){
+    let h = document.createElement("div");
+    h.classList.add("handle");
+    h.addEventListener(
+    "touchstart",
+    touchStartHandler
+    );
+    h.addEventListener(
+    "dblclick",
+    e => { 
+    e.stopPropagation();
+    if(handles.length <= 2) return;
+    e.target.remove();
+    applyGradient(type);
+
+    }
+    );
+    h.style.setProperty("--value",v);
+    h.setAttribute("tabindex","0")
+    h.v = v;
+    h.style.setProperty("--color",c);
+    h.c = c;
+    gradientEditor.appendChild(h);
+    handles.push(h);
+    }
+    
+    /*
+    function applyGradient(deg){
+        var slider = document.querySelector(".slider");
+        
+		if (deg==0){deg= slider.value}else{deg=deg}
+    	
+    	let gradient = "linear-gradient(\n"+deg+"deg";
+    	
+    	let tempgradient = "linear-gradient(90deg";
+    	
+    	handles = [...gradientEditor.querySelectorAll(".handle")];
+    
+    handles = handles.sort((a,b) => {
+    if(a.v > b.v) return 1;
+    else return -1;
+    });
+    handles.forEach(h => {
+    tempgradient += "," + h.c + " " + (h.v*100)
+    .toFixed(2) + "%";
+    gradient += ",\n" + h.c + " " + (h.v*100)
+    .toFixed(2) + "%";
+    });
+    gradient += "\n)";
+    tempgradient += ")";
+    currentGradient ="background: -o-" +gradient+";\n"+"background: " +gradient+";" ;
+    gradientEditor.style.background = tempgradient ;
+
+    document.getElementById("code").innerText = ""+currentGradient;
+
+
+    gv.style.background = gradient;
+
+    }*/
+    
+    
+    
+function applyGradient(type){
+var deg = document.querySelector(".slider").value;
+
+switch(type){
+case 0:
+
+
+
+    	
+    	var gradient = "linear-gradient(\n"+deg+"deg";
+    	
+    	var tempgradient = "linear-gradient(90deg";
+    	
+    	handles = [...gradientEditor.querySelectorAll(".handle")];
+    
+    handles = handles.sort((a,b) => {
+    if(a.v > b.v) return 1;
+    else return -1;
+    });
+    handles.forEach(h => {
+    tempgradient += "," + h.c + " " + (h.v*100)
+    .toFixed(2) + "%";
+    gradient += ",\n" + h.c + " " + (h.v*100)
+    .toFixed(2) + "%";
+    });
+    gradient += "\n)";
+    tempgradient += ")";
+    currentGradient ="background: -o-" +gradient+";\n"+"background: " +gradient+";" ;
+    gradientEditor.style.background = tempgradient ;
+
+    document.getElementById("code").innerText = ""+currentGradient;
+
+
+    gv.style.background = gradient;
+break;
+case 1:
+var slider = document.querySelector(".slider");
+
+    		if (deg==0){deg= slider.value}else{deg=deg}
+    	
+    	var gradient = "conic-gradient(\n from "+deg+"deg";
+    	
+    	var tempgradient = "linear-gradient(90deg";
+    	
+    	handles = [...gradientEditor.querySelectorAll(".handle")];
+    
+    handles = handles.sort((a,b) => {
+    if(a.v > b.v) return 1;
+    else return -1;
+    });
+    handles.forEach(h => {
+    tempgradient += "," + h.c + " " + (h.v*100)
+    .toFixed(2) + "%";
+    gradient += ",\n" + h.c + " " + (h.v*100)
+    .toFixed(2) + "%";
+    });
+    gradient += "\n)";
+    tempgradient += ")";
+    currentGradient ="background-image: " +gradient+";" ;
+    gradientEditor.style.background = tempgradient ;
+    
+    document.getElementById("code").innerText = ""+currentGradient;
+    
+    
+    gv.style.backgroundImage = gradient;
+    
+break;
+}
+
+}
+
+    
+    
+    
+    
+    function setColorPicker(color){
+    currentColor = color  ;
+    //cpp.style.setProperty("--color",color);
+    }
+    
+    function setHandleColor(handle,color){
+    handle.c = color ;
+    handle.style.setProperty("--color",color);
+    }
+    
+    
+    function copyToClipboard(str) { 
+    const el = document.createElement('textarea');
+    el.value = str; 
+    document.body.appendChild(el); 
+    el.select(); 
+    document.execCommand('copy'); 
+    document.body.removeChild(el); 
+
+    };
+    
+    
+    </script>
+    
+</head>
+<body data-theme="dark">
+<div class="wrapper">
+<div class="fieldset" class="swatch-picker">
+  
+  
+<label onclick="type = 0; applyGradient(type)">
+  <input checked="checked"  type="radio" name="swatch_1234" value="blue" />
+<li><img height="24px" width="24px" src="https://telegra.ph/file/8cd20b18d1b6faed602cc.png"></li>
+</label>
+<label onclick=" type = 1; applyGradient(type)">
+  <input type="radio" name="swatch_1234" value="gray" />
+<li><img height="24px" width="24px" src="https://telegra.ph/file/5b049171d033f438f7ad4.png"></li>
+</label>  
+<label>  
+  <input type="radio" name="swatch_1234" value="black" />
+<li><img height="24px" width="24px" src="https://telegra.ph/file/532ed5a23876187a19a6b.png"></li>
+</label>
+  
+</div>
+
+
+    	<div class="gradient-viewer" ></div>
+    	<div class="gradient-editor"></div>
+<div class="slider-box">
+<span class="bar">
+<span class="filled"></span>
+
+
+</span>
+<input class="slider" type="range" min=0 max=360 value="0" id="range_year" >
+</div>
+<div class="value"></div>
+
+    	<div class="color-picker"></div>
+    	<code id="code"></code>
+    	<div class="btn" onclick="copyToClipboard(currentGradient)">COPY</div>
+    	<div class="info">Drag the handles to adjust color-stops<br>Double Tap to add or remove color-stops</div>
+    	<div class="entry">
+    	
+    	<div class="innr">
+    	<div class="another">
+    	
+
+    	</div>
+    	</div>
+    	</div>
+</div>
+<script type="text/javascript">
+
+//function colorPicker(){
+// Simple example, see optional options for more configuration.
+let cpp = Pickr.create({
+position: 'top-middle',
+default: '#8E54E9',
+el: '.color-picker',
+
+theme: 'classic', // or 'monolith', or 'nano'
+
+swatches: [
+'rgba(244, 67, 54, 1)',
+'rgba(233, 30, 99, 0.95)',
+'rgba(156, 39, 176, 0.9)',
+'rgba(103, 58, 183, 0.85)',
+'rgba(63, 81, 181, 0.8)',
+'rgba(33, 150, 243, 0.75)',
+'rgba(3, 169, 244, 0.7)',
+'rgba(0, 188, 212, 0.7)',
+'rgba(0, 150, 136, 0.75)',
+'rgba(76, 175, 80, 0.8)',
+'rgba(139, 195, 74, 0.85)',
+'rgba(205, 220, 57, 0.9)',
+'rgba(255, 235, 59, 0.95)',
+'rgba(255, 193, 7, 1)'
+],
+
+components: {
+
+// Main components
+preview: true,
+opacity: true,
+hue: true,
+
+// Input / output Options
+interaction: {
+hex: true,
+rgba: true,
+hsla: true,
+hsva: true,
+cmyk: true,
+input: true,
+clear: false,
+save: true
+}
+}
+});
+
+cpp.on('save', (color, instance) => {
+instance.hide();
+var tcp = cpp.getColor().toHEXA().toString();
+if (tcp== null){}else{
+setColorPicker(tcp);
+setHandleColor(
+selectedHandle,
+tcp
+);
+applyGradient(type);
+}
+});
+
+
+//}
+</script>
+</body>
+</html>

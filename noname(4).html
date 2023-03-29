@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.11.1/css/all.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<title></title>
+<style type="text/css">
+img{
+width:8em;
+}
+body{
+margin:0;
+}
+.logo {
+font-family: 'Train One', cursive;
+font-size:2.5em;
+color:#2962ff;
+margin-top:20px;
+}
+#title {
+margin-left:5px;
+letter-spacing:2px;
+color:white;
+font-size:2.2em;
+width:5em;
+font-family: 'Patrick Hand', cursive;
+white-space:pre-wrap;
+margin-top:20px;
+margin-bottom:5px;
+display:inline-block;
+}
+.box{
+margin:5px;
+border-radius:10px;
+background:#252b39;
+height:50vh;
+overflow:scroll;
+color:white;
+padding:8px;
+font-size:12px;
+}
+
+.dot{
+height:15px;
+width:15px;
+border-radius:20px;
+display:inline-block;
+}
+.dots {
+display:;
+}
+.dot1{
+background-color:red;
+}
+.dot2{
+background-color:yellow;
+}
+.dot3{
+background-color:#00ff00;
+}
+#copy {
+border-radius:50px;
+margin-right:20px;
+padding:8px 12px 8px 12px;
+font-size:25px;
+float:right;
+display:inline-block;
+color:white;
+background:#2962ff;
+display:inline;
+margin-top:60px;
+}
+#fab1 {
+position:absolute;
+color:white;
+border-radius:50px;
+background:#2962ff;
+padding:11px 12px 11px 12px;
+left:60px;
+right:60px;
+bottom:20px;
+}
+button{
+position:absolute;
+float:right;
+bottom:10px;
+right:10px;
+padding:11px 16px 11px 16px;
+border-radius:500px;
+outline:none;
+border:none;
+background:#2962ff;
+color:white;
+}
+.raw {
+position:relative;
+bottom:0;
+}
+p{
+color:white;
+margin-top:100px;
+}
+a:link,a:visited {
+color:white;
+}
+</style>
+</head>
+<body bgcolor="#1a1e27" >
+<center>
+<div class="logo" ><img src="https://dl.dropbox.com/s/eed9wuqnobzk6fr/20210407_013336.png" ></div></center>
+<div id="title" >ActionBar Code Java</div>
+<span id="copy" ><i class="fal fa-copy"></i></span>
+<div class="box" >
+<div class="dots" >
+<span class="dot dot1" ></span>
+<span class="dot dot2" ></span>
+<span class="dot dot3" ></span>
+
+</div>
+<pre><code>
+getActionBar().setDisplayHomeAsUpEnabled(true);
+/* */} 
+@Override 
+public boolean onMenuItemSelected(int featureId, MenuItem item) {
+int itemId = item.getItemId(); 
+switch (itemId) {
+case android.R.id.home:
+finish();
+break;
+}
+return true;
+</code></pre>
+
+</div>
+<div class="raw" >
+<button>RAW</button></div>
+
+<center>
+<span id="fab1" >Open in Pasteinfy App</span>
+
+<p>Page Designed by <a href="https://extremekrish.github.io" target="_blank" >Krish Vishwakarma</a></p>
+</center>
+</body>
+</html>

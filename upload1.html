@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-3">
+  <form onsubmit="upload()">
+
+    <div class="custom-file">
+    <input type="file" class="custom-file-input" id="customFile" required>
+    <label class="custom-file-label" for="customFile" id="label">Choose file</label>
+    </div>
+<span style="height:8px; display:block;"></span>
+    <select class="custom-select" required>
+    <option selected disabled hidden>Select Server</option>
+    <option value="1">telegra.ph</option>
+    <option value="2">xp.io</option>
+
+    </select>
+    
+<span style="height:8px; display:block;"></span>
+    <button type="button" class="btn btn-primary">Submit</button>
+
+  </form>
+</div>
+<script>
+  $('#customFile').on("change",function() {
+    var i = $('#label').text;
+    var file = $('#customFile')[0].files[0].name;
+    $('#label').text(file);
+  });
+</script>
+<script>
+function upload() {
+var formData = new FormData();
+formData.append('file', $('#customFile')[0].files[0]);
+
+$.ajax({
+       url : 'https://xp.io/upload',
+       type : 'POST',
+       data : formData,
+       processData: false,  // tell jQuery not to process the data
+       contentType: false,  // tell jQuery not to set contentType
+       success : function(data) {
+           console.log(data);
+           alert(data);
+       }
+});
+}
+</script>
+</body>
+</html>

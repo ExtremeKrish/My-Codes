@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{margin:0;}
+.toolbar{
+width:100wh;
+background-color: rgb(255, 255, 255);
+    padding: 8px 12px;
+    display:flex;
+    border:1 px solid transparent; 
+    align-items: center;
+}
+.toolbar:hover{
+
+
+}
+.icon{
+
+	verticle-align:middle;
+    display: flex;
+    align-items: center;
+    margin-top: -2px;
+
+}
+.search-inp-div{
+margin:0px 16px 0px 8px;
+position:relative;
+display:flex;
+flex-grow:1;
+height:40px;
+outline:none;
+background-color: rgb(238, 238, 238);
+border: 1px solid transparent;
+border-radius:50px;
+
+}
+
+.search-inp-div:hover{
+ 
+border-color: rgb(209, 209, 209);
+
+}
+.inp-search{
+font-size:14px;
+padding-left:14px;
+padding-right:14px;
+outline:none;
+border:none;
+height:40px;
+background:transparent;
+flex-grow:1;
+}
+
+.menu-ico{line-height: 1;
+    color: rgb(118, 118, 118);
+    fill: currentcolor;
+    vertical-align: middle;
+    display:flex;
+   
+    }
+    
+    #drawer{
+    display:none;
+    position:fixed;
+    height:100%;
+    width:65%;
+    background:white;
+    opacity:1;
+    top:0;
+    bottom:0;
+    left:0;
+    z-index:1;
+    box-shadow:200px 1px 0px 100px rgba(0, 0, 0, 0.2);
+    
+    }
+    
+    .drawer-pc{
+    display:none;
+	box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.1);
+    position:fixed;
+    right:16px;
+    z-index:1;
+    top:60px;
+    height:400px;
+    background:white;
+    border-radius:4px 0px 4px 4px;
+    border:1px solid 
+    rgb(200, 200, 200);
+    width:280px;
+    }
+    .user-pic-mobi{
+    margin:24px 0 0 24px;
+    height:100px;
+    width:100px;
+    background:black;
+    border-radius:100px;
+    display:block;
+}
+
+.user-pic{
+    margin-top:24px;
+    height:70px;
+    background:black;
+    border-radius:100px;
+}
+.circle-chip{
+overflow:auto;
+text-align:center;
+	display:inline-block;
+    border:1px solid rgb(200, 200, 200);
+
+    font-size: 20px;
+
+border-radius:100px;
+max-height:30px;
+max-width:30px;
+height:30px;
+width:30px;
+
+}
+.circle-chip i{
+font-size:18px;
+
+margin:6px;
+display:block;
+color:#5d5d5d;
+}
+</style>
+<script>
+function openclosemenu() {
+if(document.getElementById('drawer-pc').style.display=='block'){
+
+document.getElementById('drawer-pc').style.display='none';
+
+
+
+} else {
+document.getElementById('drawer-pc').style.display='block'
+}
+
+}
+
+function openclosedrawer() {
+if(document.getElementById('drawer').style.display=='block'){
+
+document.getElementById('drawer').style.display='none';
+
+
+
+} else {
+document.getElementById('drawer').style.display='block'
+}
+
+}
+
+
+</script>
+</head>
+<body>
+
+<div class="drawer" id="drawer">
+<button onClick="openclosedrawer()" style="position:absolute; right:0;">Close</button>
+<img src="https://telegra.ph/file/71ace71f2ca4a23e3c0bf.jpg" class="user-pic-mobi" id="user-pic">
+<span style=" font-size:18px; font-family:arial; display:block; margin:14px 0 0 24px; font-weight:bold;">Extreme_Krish</span>
+
+
+</div>
+<div class="drawer-pc" id="drawer-pc">
+<center>
+<img src="https://telegra.ph/file/71ace71f2ca4a23e3c0bf.jpg" class="user-pic" id="user-pic">
+
+<span style=" font-size:15px; font-family:arial; display:block; margin-top
+:14px;">Extreme_Krish</span><br>
+
+<span class="circle-chip"><i class="material-icons">dashboard</i></span>
+<span class="circle-chip"><i class="material-icons">logout</i></span>
+<span class="circle-chip"><i class="material-icons">edit</i></span>
+
+
+
+</center>
+</div>
+
+
+
+
+
+<nav class="toolbar">
+<a href="#"><img style="height:40px; width:40px;" src="https://sketchub.in/images/about-logo.png"/></a>
+
+
+
+<div class="search-inp-div">
+<input class="inp-search" placeholder="Search Here">
+
+
+<a href="#" style="display: flex; align-items: center; padding-right: 14px;">
+<svg width="16px" height="16px" style="box-sizing:initial;fill: rgb(118, 118, 118);" class="_2-tlh _1azRR _1mPD6" version="1.1" viewBox="0 0 32 32" aria-hidden="false"><path d="M31 28.64l-7.57-7.57a12.53 12.53 0 1 0-2.36 2.36l7.57 7.57zm-17.5-6a9.17 9.17 0 1 1 6.5-2.64 9.11 9.11 0 0 1-6.5 2.67z"></path></svg>
+
+</a>
+
+
+</div>
+
+
+
+<a href="#" class="menu-ico" onClick="openclosemenu()">
+<svg width="24" height="24" version="1.1" viewBox="0 0 32 32" aria-hidden="false"><path d="M4 21.3h24V24H4v-2.7zM4 8v2.7h24V8H4zm0 9.3h24v-2.7H4v2.7z"></path></svg>
+</a>
+</nav>
+
+</body></html>
