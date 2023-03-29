@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+			margin: 8px;
+			--border:24px;
+			--background: #332A7C;
+			user-select: none;
+		}
+		.sidebar{
+			top: 8px;
+			bottom: 8px;
+			left: 8px;
+			background: var(--background);
+			width: 90px;
+			position: fixed;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		.sidebar a{
+						user-select: none;
+
+				cursor: pointer;
+				display: block;
+				text-decoration: none;
+				color: white;
+				margin: 48px 0px 8px 16px;
+				position: relative;
+				padding: 5px 0;
+
+			}
+			.sidebar a svg{
+				height: 20px;
+				width: 20px;
+				fill: white;
+				padding-left: 18px;
+			}
+			
+			.menuActive svg {
+				background: white;
+				fill:  var(--background);
+				border-radius: var(--border) 0 0 var(--border);
+
+			}
+			
+				/*.sidebar::before{
+				content: "";
+				height:calc(var(--border)*3);
+				position: absolute;
+				z-index: 20;
+				width: var(--border);
+				background:transparent;
+				left:100px;
+				border-top-left-radius: var(--border);
+				right: 0;
+				top: 0;
+				box-shadow: 0 calc(0px - var(--border)) 0 0 var(--background);
+			}
+			.sidebar::after{
+				content: "";
+				height:calc(var(--border)*3);
+				position: absolute;
+				z-index: 20;
+				width: var(--border);
+				background:transparent;
+				left:100px;
+				border-bottom-left-radius: var(--border);
+				right: 0;
+				bottom: 0;
+				box-shadow: 0 var(--border) 0 0 var(--background);
+			}
+			*/
+			.menuActive::before{
+				content: "";
+				height:calc(var(--border)*3);
+				position: absolute;
+				z-index: 20;
+				width: var(--border);
+				background:  var(--background);
+				
+				border-bottom-right-radius: var(--border);
+				right: 0;
+				top: calc(0px - var(--border)*3);
+				box-shadow: 0 var(--border) 0 0 #fff;
+			}
+			.menuActive::after{
+				content: "";
+				height: calc(var(--border)*3);
+				position: absolute;
+				z-index: 21;
+				width: var(--border);
+				background: var(--background);
+				
+				border-top-right-radius: var(--border);
+				right: 0;
+				bottom:calc(0px - var(--border)*3);
+				box-shadow: 0 calc(0px - var(--border)) 0 0 #fff;
+			}
+			.menuActive{
+	background: white;
+				color:  var(--background);
+				border-radius: var(--border) 0 0 var(--border);
+}
+			.main-section{
+					display: flex;
+
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			width:calc(100% - 100px);
+			}
+		.wrapper{
+			margin-top:45vh;
+			transform: translateY(-50%);
+		}
+.left-section , .right-section{
+	width: 100%;
+	height: 100%;
+}
+.left-section{
+width: 60%;
+
+}
+.right-section{
+width:40%;
+}
+.wish-div{
+	height: 80px;
+	background: #FFA000;
+	margin: 28px 30px 28px 30px;
+	border-radius: 16px;
+	color: white;
+	padding: 28px 0 0 30px;
+	overflow: hidden;
+}
+.wish-div h3{
+	padding: 0;
+	font-weight: 500;
+	letter-spacing: 1px;
+	font-size: 23px;
+	margin: 0;
+}
+.wish-div h6{
+	font-weight: 400;
+	margin: 10px 0;
+}
+
+.account-perefences svg{
+	margin-left: auto;
+	fill:#9A98B8;
+	margin-right: 16px;
+	height: 20px;
+	width: 20px;
+	transform: translateY(-30%);
+}
+.account-perefences{
+
+	position: absolute;
+	right: 30px;
+	top: 30px;
+}
+.bottom-right{
+	height: 100%;
+	background: #F6F6FC;
+	margin-top:94px;
+	border-top-left-radius:  20px;
+}
+.menuActive svg {
+				background: white;
+				fill:  var(--background);
+				border-radius: var(--border) 0 0 var(--border);
+
+			}
+	</style>
+	<script type="text/javascript">
+window.onload = function() {
+		let menuList = [...document.querySelectorAll("a")] ;
+    	menuList.forEach((item) => {
+        	item.addEventListener("click",()=>{
+				setMenu(item);
+				
+			});
+        })
+}
+
+function setMenu(item) {
+		let menuList1 = [...document.querySelectorAll(".sidebar a")] ;
+		menuList1.forEach((item1) => {
+        	item1.classList.remove("menuActive");
+        });
+        
+		let svglist = [...document.querySelectorAll(".sidebar a svg")] ;
+
+		svglist.forEach((svg) => {
+
+        svg.style.fill="white";
+        });
+        item.classList.add("menuActive");
+        document.querySelector('.menuActive svg').style.fill="var(--background)";
+}	
+</script>
+
+</head>
+<body>
+<div class="sidebar">
+	<div class="wrapper">
+		<a href="#">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-home-outline" width="28" height="28" viewBox="0 0 24 24"><path d="M12 5.69L17 10.19V18H15V12H9V18H7V10.19L12 5.69M12 3L2 12H5V20H11V14H13V20H19V12H22L12 3Z" /></svg>
+		</a>
+		<a href="#">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-desktop-mac" width="24" height="24" viewBox="0 0 24 24"><path d="M21,14H3V4H21M21,2H3C1.89,2 1,2.89 1,4V16A2,2 0 0,0 3,18H10L8,21V22H16V21L14,18H21A2,2 0 0,0 23,16V4C23,2.89 22.1,2 21,2Z" /></svg>
+		</a>
+		<a href="#">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-folder-outline" width="24" height="24" viewBox="0 0 24 24"><path d="M20,18H4V8H20M20,6H12L10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6Z" /></svg>
+		</a>
+		<a href="#">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-view-dashboard-variant" width="24" height="24" viewBox="0 0 24 24"><path d="M2,5V19H8V5H2M9,5V10H15V5H9M16,5V14H22V5H16M9,11V19H15V11H9M16,15V19H22V15H16Z" /></svg>
+		</a>
+		<a href="#">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-account-outline" width="24" height="24" viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M12,13C14.67,13 20,14.33 20,17V20H4V17C4,14.33 9.33,13 12,13M12,14.9C9.03,14.9 5.9,16.36 5.9,17V18.1H18.1V17C18.1,16.36 14.97,14.9 12,14.9Z" /></svg>
+		</a>
+
+	</div>
+</div>
+	<section class="main-section">
+		<div class="left-section">
+			<div class="wish-div">
+				<h3>Hello, Krish!</h3>
+				<h6>Welcome back to Clean My Mac</h6>
+			</div>
+		</div>
+		<div class="right-section">
+			<div class="account-perefences">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-eye" width="24" height="24" viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" /></svg>
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-bell-badge-outline" width="24" height="24" viewBox="0 0 24 24"><path fill="red" d="M21 6.5C21 8.43 19.43 10 17.5 10S14 8.43 14 6.5 15.57 3 17.5 3 21 4.57 21 6.5"></path> <path d="M11.5 22C12.61 22 13.5 21.11 13.5 20H9.5C9.5 21.11 10.4 22 11.5 22M18 12C17.84 12 17.67 12 17.5 12C17 12 16.5 11.92 16 11.79V17H7V10.5C7 8 9 6 11.5 6C11.68 6 11.85 6.03 12 6.05C12.1 5.06 12.45 4.14 13 3.37C12.92 2.6 12.28 2 11.5 2C10.67 2 10 2.67 10 3.5V4.18C7.13 4.86 5 7.43 5 10.5V16L3 18V19H20V18L18 16V12Z" /></svg>
+				<img src="file:///C:/Users/RAM/Documents/Desktop/Pixelstore%20Web/storage/avtar/1.png" height="34px" width="34px" style="border-radius: 8px">
+			</div>
+			<div class="bottom-right"></div>
+		</div>
+	</section>
+
+</body>
+</html>
