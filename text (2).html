@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+        <script>  // Created by Sparsh Nagpal
+
+function printTime() {
+    var d = new Date();
+    var hours = d.getHours();
+    if(hours>12){
+       var ap = "pm";
+       hours = hours -12;
+    }
+    else{
+        var ap = "am";
+    }
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+    document.body.innerHTML = hours+":"+mins+":"+secs+" "+ap;
+}
+setInterval(printTime, 1000); </script>
+<style>
+body{
+	font-size:200px;
+	height:100%;
+
+}
+
+
+</style>
+    </head>
+    <body>
+        
+    </body>
+</html>
